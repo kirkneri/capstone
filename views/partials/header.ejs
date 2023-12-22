@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md bg-dark" aria-label="Fourth navbar example" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Zephyr Gaming</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
+        <ul class="ms-auto navbar-nav">
+          <% if (!isAuthenticated) { %>
+              <li class="nav-item">
+                  <a class="nav-link" href="/users/login">Login</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/users/register">Register</a>
+              </li>
+          <% } else { %>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                      <% if (user && user.firstname) { %>
+                        <%= user.gamertag %>
+                      <% } else { %>
+                          User
+                      <% } %>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/users/logout">Logout</a></li>
+                  </ul>
+              </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
