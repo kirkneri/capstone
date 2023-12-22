@@ -1,15 +1,16 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-// const { ensureAuthenticated } = require('../config/auth');
-const { ensureAdmin } = require('../config/adminAuth');
 
 exports.getlogin = async (req, res) => {
     const locals = {
         title: 'Login',
         description: 'Zephyr Gaming'
     };
-    if (req.isAuthenticated() && req.ensureAdmin()) {
+    if (req.isAuthenticated() && req.user.role === 'user') {
+        return res.redirect('/dashboard');
+    }
+    if (req.isAuthenticated() && req.user.role === 'admin') {
         return res.redirect('/admin/dashboard');
     }
     res.render('login', { locals });
@@ -40,14 +41,35 @@ exports.postlogin = (req, res) => {
 };
 
 
+// exports.checkgamertag = async (req, res) => {
+//     try {
+//         const { username } = req.body;
+//         const query = { gamertag: username };
+//         const user = await User.findOne( { query } );
+//         if (user) {
+//             res.render('login', {  });
+//         }
+
+//     } catch (err) {
+//         console.error(err);
+//         req.flash('error_msg', 'Something went wrong');
+//         return res.redirect('/users/login');
+//     }
+// };
+
+
 exports.getregister = (req, res) => {
     const locals = {
         title: 'Register',
         description: 'Zephyr Gaming'
     };
-    if (req.isAuthenticated()) {
-        return res.redirect('/dashboard');
+    if (!req.user) {
+        return res.redirect('/users/login');
     }
+    if (req.isAuthenticated() && req.user.role === 'user') {
+        return res.redirect('/dashboard');
+    } 
+
     res.render('register', { locals });
 };
 

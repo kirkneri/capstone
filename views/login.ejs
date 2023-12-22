@@ -3,7 +3,7 @@
     <div class="card card-body">
       <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i> Login</h1>
       <%- include("./partials/messages.ejs"); %>
-      <form action="/users/login" method="POST">
+      <form action="/users/login">
         <div class="form-group form-floating">
           <input
             type="text"
@@ -14,7 +14,31 @@
           />
           <label for="username">Enter gamertag or email</label>
         </div>
-        <div class="form-group form-floating">
+        <!-- <div class="form-group form-floating" id="passwordField" style="display: none;">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control mt-3"
+            placeholder="Enter Password"
+          />
+          <label for="password">Enter Password</label>
+        </div> -->
+        <button type="button" id="checkGamertag" class="btn btn-primary btn-block mt-3" data-bs-toggle="modal" data-bs-target="#passwordModal">
+          Continue
+        </button>
+      </form>
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Password</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group form-floating" id="passwordField">
           <input
             type="password"
             id="password"
@@ -24,11 +48,15 @@
           />
           <label for="password">Enter Password</label>
         </div>
-        <button type="submit" class="btn btn-primary btn-block mt-3">
-          Login
-        </button>
-      </form>
-      <p class="mt-4">No Account? <a href="/users/register">Register</a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/users/login" method="POST">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
   </div>
 </div>

@@ -1,14 +1,6 @@
 const User = require('../models/User');
 const Applicant = require('../models/Applicant');
 
-exports.dashboard = (req, res) => {
-    const locals = {
-        title: 'Dashboard',
-        description: 'Zephyr Gaming'
-    };
-    res.render('user-dashboard', { locals });
-};
-
 exports.admindashboard = async (req, res) => {
     const locals = {
         title: 'Admin Dashboard',

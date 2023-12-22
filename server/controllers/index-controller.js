@@ -1,5 +1,3 @@
-const { ensureAdmin } = require('../config/adminAuth');
-
 exports.index = (req, res) => {
     const user = req.user;
     const locals = {
@@ -12,4 +10,12 @@ exports.index = (req, res) => {
         return res.redirect('/dashboard');
     }
     res.render('welcome', { locals });
+};
+
+exports.dashboard = (req, res) => {
+    const locals = {
+        title: 'Dashboard',
+        description: 'Zephyr Gaming'
+    };
+    res.render('user-dashboard', { locals });
 };

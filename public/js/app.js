@@ -10,4 +10,3 @@ document.getElementById('otherCheckbox').addEventListener('change', function() {
       otherGameInput.removeAttribute('required');
     }
   });
-  
