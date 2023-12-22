@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ApplicantsSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     firstname: {
         type: String,
         required: true
@@ -13,11 +13,15 @@ const ApplicantsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    phone:{
+    phone: {
         type: Number,
-        required: true
+        required: true  
     },
     address: {
+        type: String,
+        required: true
+    },
+    password: {
         type: String,
         required: true
     },
@@ -31,15 +35,15 @@ const ApplicantsSchema = new mongoose.Schema({
     },
     discord: {
         type: String,
-        required: true
+        required: false
     },
     steam: {
         type: String,
-        required: true
+        required: false
     },
     riot: {
         type: String,
-        required: true
+        required: false
     },
     instagram: {
         type: String,
@@ -51,22 +55,27 @@ const ApplicantsSchema = new mongoose.Schema({
     },
     rank: {
         type: String,
-        required: true
+        required: false
     },
     bio: {
         type: String,
-        required: true  
+        required: false
     },
-    createdAt: {
+    createAt: {
         type: Date,
         default: Date.now
     },
-    goal: {
+    role: {
         type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
     },
-
+    updatedAt: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
-const Applicant = mongoose.model('Applicant', ApplicantsSchema);
+const User = mongoose.model('User', UserSchema);
 
-module.exports = Applicant;
+module.exports = User;

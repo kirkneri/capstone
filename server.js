@@ -2,18 +2,19 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const connectDB = require('./config/config')
 const path = require('path');
-const port = process.env.PORT || 8080;
 const expressLayouts = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('express-flash');
+const connectDB = require('./server/config/config')
 const passport = require('passport');
+
+const port = process.env.PORT || 8080;
 
 connectDB();
 
-require('./config/passport')(passport);
+require('./server/config/passport')(passport);
 
 app.use(expressLayouts);
 app.set('layout', 'partials/layout');
@@ -58,11 +59,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-app.use('/', require('./routes/applicant'));
-app.use('/users', require('./routes/applicant'));
-app.use('/users', require('./routes/profile'));
+app.use('/', require('./server/routes/index'));
+app.use('/', require('./server/routes/applicant'));
+app.use('/users', require('./server/routes/users'));
+app.use('/users', require('./server/routes/profile'));
+app.use('/admin', require('./server/routes/admin'));
 
 app.listen(port, () => {
     console.log('listening on port ' + port);

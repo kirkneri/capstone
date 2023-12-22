@@ -6,5 +6,4 @@ module.exports = {
         req.flash('error_msg', 'You do not have permission to view this resource');
         res.redirect('/dashboard');
     }
-    
 };

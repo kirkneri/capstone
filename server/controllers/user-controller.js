@@ -2,15 +2,15 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 // const { ensureAuthenticated } = require('../config/auth');
-// const { ensureAdmin } = require('../config/adminAuth');
+const { ensureAdmin } = require('../config/adminAuth');
 
 exports.getlogin = async (req, res) => {
     const locals = {
         title: 'Login',
         description: 'Zephyr Gaming'
     };
-    if (req.isAuthenticated()) {
-        return res.redirect('/dashboard');
+    if (req.isAuthenticated() && req.ensureAdmin()) {
+        return res.redirect('/admin/dashboard');
     }
     res.render('login', { locals });
 };

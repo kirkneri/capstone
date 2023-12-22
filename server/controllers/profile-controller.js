@@ -1,8 +1,7 @@
-const express = require('express');
-const router = express.Router();
 const User = require('../models/User');
 
-router.get('/profile', (req, res) => {
+
+exports.getprofile = (req, res) => {
     if (req.isAuthenticated()) {
         const user = req.user;
         const locals = {
@@ -13,24 +12,4 @@ router.get('/profile', (req, res) => {
     } else {
         res.redirect('/users/login');
     }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = router;
+}

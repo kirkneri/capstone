@@ -22,8 +22,8 @@
               <p class="text-muted mb-1"><%= user.rank %></p>
               <p class="text-muted mb-4"><%= user.address %></p>
               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Edit</button>
-                <!-- <button type="button" class="btn btn-outline-primary ms-1">Message</button> -->
+                <button type="button" class="btn <%- user.role == 'admin' ? 'btn-warning' : 'btn-primary' %>">Edit</button>
+                <!-- <button type="button" class="btn btn-outline-secondary ms-1" disabled><strong><%= user.role %></strong></button> -->
               </div>
             </div>
           </div>
