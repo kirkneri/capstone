@@ -20,6 +20,7 @@
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
           <th scope="col">Gamertag</th>
+          <th scope="col">Role</th>
           <th scope="col" class="text-end">Action</th>
         </tr>
       </thead>
@@ -30,23 +31,24 @@
             <td><%= element.firstname %></td>
             <td><%= element.lastname %></td>
             <td><%= element.gamertag %></td>
+            <td><%= element.role %></td>
             <td class="text-end">
   
               <div class="d-flex flex-row justify-content-end gap-2">
   
-                <a href="/view/<%= element._id %>" type="button" class="btn btn-primary btn-small">
+                <a href="/users/view/<%= element._id %>" type="button" class="btn btn-primary">
                   <i class="bi bi-eye"></i>
                 </a>
   
-                <a href="/edit/<%= element._id %>" type="button" class="btn btn-warning btn-small">
+                <a href="/users/edit/<%= element._id %>" type="button" class="btn btn-warning">
                   <i class="bi bi-pencil"></i>
                 </a>
-  
-                <form action="/edit/<%= element._id %>?_method=DELETE" method="POST" class="position-relative">
-                  <button type="submit" class="btn btn-danger btn-small">
-                    <i class="bi bi-person-x"></i>
-                  </button>
-                </form>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirm<%= element._id %>">
+                  <i class="bi bi-person-x"></i>
+                </button>
+                <!-- <form action="/edit/<%= element._id %>?_method=DELETE" method="POST" class="position-relative">
+                  
+                </form> -->
               </div>
             </td>
           </tr>
@@ -93,4 +95,25 @@
     </nav>
   <% } %>
   
-  
+
+  <% users.forEach(element => { %>
+    <div class="modal fade" id="deleteConfirm<%= element._id %>" tabindex="-1" aria-labelledby="deleteConfirm<%= element._id %>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete User</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete <%= element.gamertag %>?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <form action="/users/edit/<%= element._id %>?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% }) %>

@@ -40,24 +40,6 @@ exports.postlogin = (req, res) => {
     })(req, res);
 };
 
-
-// exports.checkgamertag = async (req, res) => {
-//     try {
-//         const { username } = req.body;
-//         const query = { gamertag: username };
-//         const user = await User.findOne( { query } );
-//         if (user) {
-//             res.render('login', {  });
-//         }
-
-//     } catch (err) {
-//         console.error(err);
-//         req.flash('error_msg', 'Something went wrong');
-//         return res.redirect('/users/login');
-//     }
-// };
-
-
 exports.getregister = (req, res) => {
     const locals = {
         title: 'Register',
