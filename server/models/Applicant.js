@@ -61,9 +61,6 @@ const ApplicantsSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    goal: {
-        type: String,
-    },
     updatedAt: {
         type: Date,
         default: Date.now()

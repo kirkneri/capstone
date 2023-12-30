@@ -22,20 +22,14 @@ exports.postapply = async (req, res) => {
             address,
             gamertag,
             games,
-            otherGame,
             discord,
             steam,
             riot,
             rank,
             bio,
-            goal
         } = req.body;
 
-        let selectedGame = games;
-
-        if (games === 'other' && otherGame) {
-            selectedGame = otherGame;
-        }
+        let selectedGame = games || [];
 
         let errors = [];
 
@@ -69,7 +63,6 @@ exports.postapply = async (req, res) => {
                 riot,
                 rank,
                 bio,
-                goal
             });
 
             await newApplicant.save();

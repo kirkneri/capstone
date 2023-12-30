@@ -1,341 +1,240 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-user-plus"></i> Register
-      </h1>
-      <%- include("./partials/messages"); %>
-      <form class="row g-3" action="/users/register" method="POST">
-        <div class="form-floating col-md-6">
-          <input
-            type="name"
-            id="firstname"
-            name="firstname"
-            class="form-control"
-            placeholder="Enter firstname"
-            value="<%= typeof firstname != 'undefined' ? firstname : '' %>"
-          />
-          <label for="firstname">Enter firstname</label>
-        </div>
-        <div class="form-floating col-md-6">
-          <input
-            type="name"
-            id="lastname"
-            name="lastname"
-            class="form-control"
-            placeholder="Enter lastname"
-            value="<%= typeof lastname != 'undefined' ? lastname : '' %>"
-          />
-          <label for="lastname">Enter lastname</label>
-        </div>
-        <div class="form-group form-floating col-md-8">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter email"
-            value="<%= typeof email != 'undefined' ? email : '' %>"
-          />
-          <label for="email">Enter email</label>
-        </div>
-        <div class="form-group form-floating col-md-4">
-          <input
-            type="phone"
-            id="phone"
-            name="phone"
-            class="form-control"
-            placeholder="Enter phone #"
-            value="<%= typeof phone != 'undefined' ? phone : '' %>"
-          />
-          <label for="phone">Enter phone #</label>
-        </div>
-        <div class="form-group form-floating col-md-6">
-          <input
-            type="text"
-            class="form-control"
-            id="address"
-            name="address"
-            required
-            placeholder="Location"
-            value="<%= typeof address != 'undefined' ? address : '' %>"
-          />
-          <label for="address">Location (City, State, Country)</label>
-        </div>
-        <div class="form-group form-floating col-md-6">
-          <input
-            type="text"
-            id="gamertag"
-            name="gamertag"
-            class="form-control"
-            placeholder="gamertag"
-            value="<%= typeof gamertag != 'undefined' ? gamertag : '' %>"
-          />
-          <label for="gamertag">Enter gamertag</label>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <label class="mt-3" for="games-list">Favorite Games:</label>
-            <div
-              class="form-group"
-              id="games-list"
-              role="group"
-              aria-label="Games checkboxes"
-            >
-              <div>
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="valorant"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Valorant"
-                />
-                <label class="btn btn-outline-dark mt-2" for="valorant"
-                  >Valorant</label
-                >
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="<%- user.role == 'admin' ? '/admin/dashboard' : '/dashboard' %>">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Add User</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
 
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="league"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;League of Legends"
-                />
-                <label class="btn btn-outline-dark mt-2" for="league"
-                  >League of Legends</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="fortnite"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Fortnite"
-                />
-                <label class="btn btn-outline-dark mt-2" for="fortnite"
-                  >Fortnite</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="warzone"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Call of Duty Warzone III"
-                />
-                <label class="btn btn-outline-dark mt-2" for="warzone"
-                  >Call of Duty Warzone III</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="cod_mobile"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Call of Duty Mobile"
-                />
-                <label class="btn btn-outline-dark mt-2" for="cod_mobile"
-                  >Call of Duty Mobile</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="farlight_84"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Farlight 84"
-                />
-                <label class="btn btn-outline-dark mt-2" for="farlight_84"
-                  >Farlight 84</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="csgo"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Counter-Strike: Global Offensive"
-                />
-                <label class="btn btn-outline-dark mt-2" for="csgo"
-                  >CS:GO</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="overwatch"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Overwatch"
-                />
-                <label class="btn btn-outline-dark mt-2" for="overwatch"
-                  >Overwatch</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="minecraft"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Minecraft"
-                />
-                <label class="btn btn-outline-dark mt-2" for="minecraft"
-                  >Minecraft</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="rocket"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Rocket League"
-                />
-                <label class="btn btn-outline-dark mt-2" for="rocket"
-                  >Rocket League</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="apex"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Apex Legends"
-                />
-                <label class="btn btn-outline-dark mt-2" for="apex"
-                  >Apex Legends</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="pubg"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;PUBG"
-                />
-                <label class="btn btn-outline-dark mt-2" for="pubg">PUBG</label>
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="dota"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;DoTA 2"
-                />
-                <label class="btn btn-outline-dark mt-2" for="dota"
-                  >DoTA 2</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="hearthstone"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Hearthstone"
-                />
-                <label class="btn btn-outline-dark mt-2" for="hearthstone"
-                  >Hearthstone</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="hos"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Heroes of the Storm"
-                />
-                <label class="btn btn-outline-dark mt-2" for="hos"
-                  >Heroes of the Storm</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="mlbb"
-                  autocomplete="off"
-                  name="games[]"
-                  value="&nbsp;Mobile Legends: Bang Bang"
-                />
-                <label class="btn btn-outline-dark mt-2" for="mlbb"
-                  >Mobile Legends: Bang Bang</label
-                >
-
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="otherCheckbox"
-                  autocomplete="off"
-                  name="games[]"
-                  value="Other "
-                />
-                <label
-                  class="btn btn-outline-secondary mt-2"
-                  for="otherCheckbox"
-                  >Other</label
-                >
-              </div>
-
+  <div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user-plus"></i> Add User
+        </h1>
+        <%- include("./partials/messages"); %>
+        <form class="row g-3" action="/users/register" method="POST">
+          <div class="form-floating col-md-6">
+            <input
+              type="name"
+              id="firstname"
+              name="firstname"
+              class="form-control"
+              placeholder="Enter firstname"
+              value="<%= typeof firstname != 'undefined' ? firstname : '' %>"
+            />
+            <label for="firstname">Enter firstname</label>
+          </div>
+          <div class="form-floating col-md-6">
+            <input
+              type="name"
+              id="lastname"
+              name="lastname"
+              class="form-control"
+              placeholder="Enter lastname"
+              value="<%= typeof lastname != 'undefined' ? lastname : '' %>"
+            />
+            <label for="lastname">Enter lastname</label>
+          </div>
+          <div class="form-group form-floating col-md-8">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Enter email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+            <label for="email">Enter email</label>
+          </div>
+          <div class="form-group form-floating col-md-4">
+            <input
+              type="phone"
+              id="phone"
+              name="phone"
+              class="form-control"
+              placeholder="Enter phone #"
+              value="<%= typeof phone != 'undefined' ? phone : '' %>"
+            />
+            <label for="phone">Enter phone #</label>
+          </div>
+          <div class="form-group form-floating col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+              required
+              placeholder="Location"
+              value="<%= typeof address != 'undefined' ? address : '' %>"
+            />
+            <label for="address">Location (City, State, Country)</label>
+          </div>
+          <div class="form-group form-floating col-md-6">
+            <input
+              type="text"
+              id="gamertag"
+              name="gamertag"
+              class="form-control"
+              placeholder="gamertag"
+              value="<%= typeof gamertag != 'undefined' ? gamertag : '' %>"
+            />
+            <label for="gamertag">Enter gamertag</label>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <label class="mt-3" for="games-list">Favorite Games:</label>
               <div
-                class="form-group form-floating col-6 m-auto mt-3"
-                id="otherGameField"
-                style="display: none"
+                class="form-group"
+                id="games-list"
+                role="group"
+                aria-label="Games checkboxes"
               >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="otherGame"
-                  name="otherGame"
-                  placeholder="Enter Other Game"
-                />
-                <label for="otherGame">Other Game</label>
+                <div>
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="valorant"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;Valorant"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="valorant"
+                    >Valorant</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="fortnite"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;Fortnite"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="fortnite"
+                    >Fortnite</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="warzone"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;Call of Duty Warzone III"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="warzone"
+                    >Call of Duty Warzone III</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="cod_mobile"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;Call of Duty Mobile"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="cod_mobile"
+                    >Call of Duty Mobile</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="farlight_84"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;Farlight 84"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="farlight_84"
+                    >Farlight 84</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="csgo"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;Counter-Strike: Global Offensive"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="csgo"
+                    >CS:GO</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="overwatch"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;Overwatch"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="overwatch"
+                    >Overwatch</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="apex"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;Apex Legends"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="apex"
+                    >Apex Legends</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="pubg"
+                    autocomplete="off"
+                    name="games[]"
+                    value="&nbsp;PUBG"
+                  />
+                  <label class="btn btn-outline-dark mt-2" for="pubg">PUBG</label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="form-group form-floating col-md-6">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Create password"
-            value="<%= typeof password != 'undefined' ? password : '' %>"
-          />
-          <label for="password">Enter password</label>
-        </div>
-        <div class="form-group form-floating col-md-6">
-          <input
-            type="password"
-            id="password2"
-            name="password2"
-            class="form-control"
-            placeholder="Confirm password"
-            value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-          />
-          <label for="password2">Confirm password</label>
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block col-md-4 mt-5 my-3 m-auto"
-        >
-          Register
-        </button>
-      </form>
-      <p class="mt-4">Have An Account? <a href="/users/login">Login</a></p>
+          <div class="form-group form-floating col-md-6">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Create password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+            <label for="password">Enter password</label>
+          </div>
+          <div class="form-group form-floating col-md-6">
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              class="form-control"
+              placeholder="Confirm password"
+              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+            />
+            <label for="password2">Confirm password</label>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block col-md-4 mt-5 my-3 m-auto"
+          >
+            Register
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

@@ -56,13 +56,9 @@ exports.getregister = (req, res) => {
 };
 
 exports.postregister = async (req, res) => {
-    const { firstname, lastname, gamertag, email, phone, address, password, password2, games, otherGame, role } = req.body;
+    const { firstname, lastname, gamertag, email, phone, address, password, password2, games, role } = req.body;
 
     let selectedGames = games || [];
-
-    if (games === 'otherCheckbox' && otherGame) {
-        selectedGames = [otherGame];
-    }
 
     let errors = [];
 
@@ -80,7 +76,7 @@ exports.postregister = async (req, res) => {
     }
  
     if (errors.length > 0) {
-        res.render('register', { errors, firstname, lastname, gamertag, email, phone, address, games, otherGame, password, password2 });
+        res.render('register', { errors, firstname, lastname, gamertag, email, phone, address, games, password, password2 });
     } else {
         try {
             const userByEmail  = await User.findOne({ email });
@@ -93,7 +89,7 @@ exports.postregister = async (req, res) => {
                 errors.push({ msg: 'Gamertag already in use.' });
                 res.render('register', { errors, firstname, lastname, gamertag, email, phone, address, games, password, password2 });
              } else {
-                const newUser = new User({ firstname, lastname, gamertag, email, phone, address, games, password, role, games: selectedGames });
+                const newUser = new User({ firstname, lastname, gamertag, email, phone, address, password, role, games, games: selectedGames });
                 const salt = await bcrypt.genSalt(10);
                 const hash = await bcrypt.hash(newUser.password, salt);
                 newUser.password = hash;
